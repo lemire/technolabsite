@@ -2,3 +2,19 @@
 body {
   padding-top: 2rem;
 }
+
+div.container {
+  margin-bottom: 3cm;
+  margin-top: 3cm;
+}
+
+h2.display-4 {
+  margin-bottom: 1cm;
+
+}
+
+div.col-md-8 {
+  margin-bottom: 1cm;
+  margin-top: 1cm;
+
+}
