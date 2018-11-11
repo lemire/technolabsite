@@ -1,11 +1,135 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>Git</title>
+<title>Le contrôle de version,  Git et le postmodernisme : pourquoi Microsoft a acheté GitHub pour 7.5 milliards de dollars </title>
+<style>
+body {
+    background-color: black;
+    color: white;
+    margin: 10%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1, h2, h3, h4 {
+text-align: center;
+}
+</style>
 </head>
 <body>
-<h1>Git</h1>
+
+<h1>Le contrôle de version,  Git et le postmodernisme : pourquoi Microsoft a acheté GitHub pour 7.5 milliards de dollars</h1>
+
+<p>Assez tôt, les programmeurs ont compris qu'ils avaient besoin 
+non seulement de stocker des fichiers, mais aussi de garder une trace
+des différentes versions d'un fichier donné. 
+Les fonctions de bases que permet le contrôle de version est le 
+retour en arrière, la présence d'un <em>log</em> historique qui permet de documenter
+les modifications effectuées.
+</p>
+<p>Un de premiers outils à cette fin fut le Source Code Control System (SCCS), 
+développé par Rochkind au sein des laboratoires Bell en 1972. </p>
+
+<p>La plupart des systèmes de type Unix, ainsi que des mainframes ont utilisés
+un outil de gestion des versions depuis. Il en existe plusieurs dont
+CVS, subversion. Sur les PC, plusieurs outils similaires
+furent développés dont Visual SourceSafe.</p>
+
+<p>Depuis plusieurs versions destinées au grand public furent développées tel
+que DropBox. </p>
+
+<p>Git a été publié en 2005 Linus Torvalds, l'auteur du noyau Linus fréquemment 
+utilisé par les serveurs sur Internet. Torvalds cherchait à résoudre un problème de gestion du code source Linus. Git est devenu l'outil de gestion de versions 
+dominant. Il a été adopté notamment par Google, Microsoft, etc. Il s'agit de
+logiciel libre.</p>
+
+<p>Plusieurs entreprises offrent des services basés sur Git dont GitHub. Fondé en 2008, GitHub compte près de 30 million d'utilisateurs. En 2018, Microsoft a acquis <em> GitHub pour 7.5 milliards de dollars </em>.</p>
+
+
+<ol>
+<li>Git est distribué. Contrairement à plusieurs systèmes qui ont précédés comme
+CSV, il n'y a pas de <em>serveur central unique</em>. Par exemple, bien que plusieurs
+utilisateurs s'en remette à GitHub comme centre de coordination, votre copie 
+locale peut être rattachée à n'importe quel <em>remote</em> et on peut même le rattacher
+à plusieurs <em>remote</em>. En ce sens, git est fondamentalement postmoderniste: il 
+n'y a pas une seule version de la vérité.</li>
+<li>Git est efficace et rapide, même pour des projets énormes. Les systèmes comme
+CVS et subversion pouvaient devenir inefficaces et prendre plusieurs minutes pour
+effectuer certaines opérations. Il faut préciser que la mise en oeuvre de Git
+s'est améliorée davantage et inclus maintenant des index (par ex. WAH et Roaring).</li>
+<li>Git est extrêmement robuste et ne se « corrompt » pas facilement.</li>
+</ol>
+
+
+<h2>Architecture </h2>
+
+<ol>
+<li>L'unité de base logique du Git est le <em>commit</em> qui est un ensemble de modifications sur plusieurs fichiers. Un <em>commit</em> comprend notamment une référence à au moins un parent. (Exception: le premier commit dans un repo. n'a pas de parent!) Habituellement, un commit n'a qu'un seul parent.</li>
+<li> Les commits forment un graphe dirigé acyclique. Les commits sont identifiés entilisant un <tt>hash</tt> (921103db8259eb9de72f42db8b939895f5651489)qui prend en compte le date et l'heure, le commentaire, le nom de l'utilisateur, les parents, la nature du changement. </li>
+<li>On peut travailler sur un fichier, mais tant qu'on n'a pas effectué un <em>commit</em>, les modifications ne vont pas dans la base de données immutable Git. </li>
+<li>Un même <em>commit</em> peut avoir plusieurs enfants (notamment dans le cas où on emploie des <em>branches</em>). En effet, il est fréquent d'explorer plusieurs possibilités ou de travailler dans différentes directions à partir d'un même code source. </li>
+<li>Les <em>commit</em> peuvent à tout moment être <em>poussés</em> vers un  (ou plusieurs) <em>remote</em> à partir d'où d'autres utilisateurs peuvent y avoir accès. </li>
+<li>On peut synchroniser sa version avec un <em>remote</em> à l'aide d'un <em>fetch</em> suivi d'un <em>merge</em> (aussi appelé un <em>pull</em>). Le merge créé un nouveau <em>commit</em> ayant deux ou plusieurs parents. </li>
+</ol>
 
 
 
+<h2>Fork me</h2>
+
+
+<ol>
+<li>Étant donné un répertoire Git publiquement disponible, n'importe qui peut le <em>cloner</em> et commencer à y travailler et y contribuer. </li>
+<li>On peut créer un nouveau <em>remote</em>, une opération qu'on appelle un <em>fork</em>. </li>
+<li>À partir d'un <em>fork</em>, on peut soumettre un <em>pull request</em> qui invite les gens à intégrer nos changements. </li>
+
+</ol>
+
+<p>Cela permet une forme d'innovation sans permission !</p>
+
+<p><em>Adria Richards forking story</em>:</p>
+<blockquote>My friends and I had decided forking someone’s repo is a new form of flattery (the highest form being implementation) and we were excited about one of the presenters projects; a friend said “I would fork that guys repo” The sexual context was applied by Adria, and not us.
+</blockquote>
+
+
+
+<h2>Blame</h2>
+
+<p>La commande <tt>git blame</tt> permet de savoir qui a touché pour la dernière fois
+à un bout de text donné.</p>
+<h2>Tag</h2>
+
+<p>Vous pouvez donner un nom de votre choix à un <em>commit</em>, par exemple <tt>version 1.0</tt>.</p>
+
+
+
+<h2>Utilisabilité</h2>
+
+
+<ol>
+<li>On utilise souvent git en ligne de commande. Il est possible d'utiliser
+des clients, mais il faut quand même comprendre l'architecture git.
+Des services comme GitHub rendent git un peu plus facile.</li>
+<li>Il y a une distinction entre commit et push.</li>
+<li>Les commits sont indentifiés à l'aide d'une valeur hachée en hexadécimal (40 octets). Bien qu'un préfixe suffit, c'est quand même techniquement intimidant.</li>
+<li>En cas de problème, git suppose que vous savez ce que vous faites!</li>
+</ol>
+
+
+<h2>Et Microsoft?</h2>
+
+<p>Pendant des années, Microsoft a pris les programmeurs pour acquis. Ceux-ci
+devaient gagner leur vie, et pour le faire, ils devaient travailler avec les
+outils Windows. C'est ainsi que Microsoft a maintenu un des pires navigateurs
+web (du point de vue des programmeurs) en existence (Internet Explorer).
+Dans une ère où l'informatique mobile (iOS et Android) et 
+l'infonuagique (Linux) domine, Microsoft ne peut plus se permettre ce luxe.
+L'échec du Windows Phone l'illustre bien : pas de programmeurs, pas 
+produit, pas de vente. GitHub est actuellement au centre même de la vie
+de millions de programmeurs. Cela vaut plusieurs milliards de dollars.</p>
+
+<h2>Conclusion</h2>
+
+<p>En 2018, si vous développez du code sans utiliser Git ou l'équivalent, vous 
+envoyez comme signal que vous ne savez pas ce que vous faites en ce qui a trait
+au développement logiciel.</p>
 </body>
 </html>
+
